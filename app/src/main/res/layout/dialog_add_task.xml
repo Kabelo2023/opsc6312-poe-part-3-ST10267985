@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:padding="16dp"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:background="@color/sp_bg">
+
+    <TextView
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="Task title" android:textColor="@color/sp_text" />
+
+    <EditText
+        android:id="@+id/etTaskTitle"
+        android:layout_width="match_parent" android:layout_height="48dp"
+        android:backgroundTint="@color/sp_border"
+        android:textColor="@color/sp_text"
+        android:textColorHint="@color/sp_text_subtle"
+        android:hint="e.g., Draft project brief" />
+
+    <TextView
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Tag" android:textColor="@color/sp_text" />
+
+    <EditText
+        android:id="@+id/etTaskTag"
+        android:layout_width="match_parent" android:layout_height="48dp"
+        android:backgroundTint="@color/sp_border"
+        android:textColor="@color/sp_text"
+        android:textColorHint="@color/sp_text_subtle"
+        android:hint="e.g., High · Today" />
+</LinearLayout>

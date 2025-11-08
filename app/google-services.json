@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "79613024763",
+    "project_id": "smartplanner-7645c",
+    "storage_bucket": "smartplanner-7645c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:79613024763:android:fbf15cf6af965c54cd935e",
+        "android_client_info": {
+          "package_name": "com.example.smartplanner"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCevSwqifLYRsC3lXDV4OdHxDaDWpQ9DwI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

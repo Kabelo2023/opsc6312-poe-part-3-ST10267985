@@ -1,0 +1,11 @@
+{
+  "name": "smartplanner-api",
+  "private": true,
+  "engines": { "node": "18" },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "firebase-admin": "^12.6.0",
+    "firebase-functions": "^6.0.1"
+  }
+}

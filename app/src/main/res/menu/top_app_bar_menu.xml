@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Small, frequent actions as icons (built-in system icons so no new drawables needed) -->
+    <item
+        android:id="@+id/action_focus"
+        android:title="@string/action_focus"
+        android:icon="@android:drawable/ic_menu_recent_history"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_insights"
+        android:title="@string/action_insights"
+        android:icon="@android:drawable/ic_menu_view"
+        app:showAsAction="ifRoom" />
+
+    <!-- Everything else goes to overflow (no icons needed) -->
+    <item
+        android:id="@+id/action_export_pdf"
+        android:title="@string/action_export_pdf"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_export_ics"
+        android:title="@string/action_export_ics"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_load"
+        android:title="@string/action_load"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_create"
+        android:title="@string/action_create"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_settings"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_logout"
+        android:title="@string/action_logout"
+        app:showAsAction="never" />
+</menu>

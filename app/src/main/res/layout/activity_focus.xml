@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="24dp"
+    android:background="@color/sp_bg">
+
+    <TextView
+        android:id="@+id/tvTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/focus_timer_default"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        android:textColor="@color/sp_text"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="24dp">
+
+        <!-- Start / Focus -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnStart"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:minWidth="0dp"
+            android:paddingHorizontal="16dp"
+            android:text="@string/focus_start_25"
+            android:textAllCaps="false"
+            android:textColor="@color/sp_text"
+            app:strokeColor="@color/sp_accent"
+            app:strokeWidth="2dp"/>
+
+        <!-- Short break -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnShortBreak"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginStart="12dp"
+            android:minWidth="0dp"
+            android:paddingHorizontal="16dp"
+            android:text="@string/focus_break_5"
+            android:textAllCaps="false"
+            android:textColor="@color/sp_text"
+            app:backgroundTint="@color/sp_card"/>
+
+        <!-- Long break -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLongBreak"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginStart="12dp"
+            android:minWidth="0dp"
+            android:paddingHorizontal="16dp"
+            android:text="@string/focus_break_15"
+            android:textAllCaps="false"
+            android:textColor="@color/sp_text"
+            app:backgroundTint="@color/sp_card"/>
+
+        <!-- Stop -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnStop"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginStart="12dp"
+            android:minWidth="0dp"
+            android:paddingHorizontal="16dp"
+            android:text="@string/focus_stop"
+            android:textAllCaps="false"
+            android:textColor="@color/sp_text"
+            app:strokeColor="@color/sp_warn"
+            app:strokeWidth="2dp"/>
+    </LinearLayout>
+</LinearLayout>
