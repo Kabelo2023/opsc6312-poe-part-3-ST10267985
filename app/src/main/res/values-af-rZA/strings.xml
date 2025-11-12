@@ -1,14 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">SmartPlanner</string>
+
+    <!-- Settings -->
     <string name="settings">Instellings</string>
     <string name="settings_saved">Instellings gestoor</string>
 
+    <!-- Login -->
     <string name="login">Meld aan</string>
-    <string name="register">Register</string>
+    <string name="register">Registreer</string>
     <string name="sign_in_with_google">Meld aan met Google</string>
     <string name="email">E-pos</string>
     <string name="password">Wagwoord</string>
 
+    <!-- Bottom nav / menu labels -->
+    <string name="menu_home">Tuis</string>
+    <string name="menu_tasks">Take</string>
+    <string name="menu_collab">Samewerking</string>
+    <string name="menu_profile">Profiel</string>
+
+    <!-- Actions (overflow / app bar) -->
+    <string name="action_focus">Fokus</string>
+    <string name="action_insights">Insigte</string>
+    <string name="action_export_pdf">Voer PDF uit</string>
+    <string name="action_export_ics">Voer ICS uit</string>
+    <string name="action_load">Laai voorbeeld</string>
+    <string name="action_create">Skep voorbeeld</string>
+    <string name="action_settings">Instellings</string>
+    <string name="action_logout">Teken uit</string>
+
+    <!-- General UI (duplicates kept for layouts that reference these keys) -->
     <string name="focus_mode">Fokusmodus</string>
     <string name="insights">Insigte</string>
     <string name="export_pdf">Voer PDF uit</string>
@@ -16,9 +37,37 @@
     <string name="load_sample">Laai voorbeeld</string>
     <string name="create_sample">Skep voorbeeld</string>
     <string name="logout">Teken uit</string>
+    <string name="add">Voeg by</string>
 
+    <!-- Weather -->
     <string name="chance_of_rain">Kans op reën</string>
 
+    <!-- Notifications -->
     <string name="notif_channel_name">Taakherinnerings</string>
     <string name="notif_channel_desc">Kennisgewings vir take wat verskuldig is</string>
+
+    <!-- Focus screen -->
+    <string name="focus_timer_default">25:00</string>
+    <string name="focus_start_25">Begin 25</string>
+    <string name="focus_break_5">Pouse 5</string>
+    <string name="focus_break_15">Pouse 15</string>
+    <string name="focus_stop">Stop</string>
+
+    <!-- Add Task dialog -->
+    <string name="new_task_for">Nuwe taak vir %1$s</string>
+    <string name="hint_task_title">Taaktitel</string>
+    <string name="hint_task_tag">Etiket</string>
+    <string name="cta_cancel">Kanselleer</string>
+    <string name="cta_add">Voeg by</string>
+
+    <string name="notifications">Kennisgewings</string>
+    <string name="language">Taal</string>
+    <string name="send_test_notification">Stuur toetkkennisgewing</string>
+    <string name="test_notif_body">Dit is ’n toets-taakherinnering.</string>
+    <string name="notifications_enabled">Kennisgewings geaktiveer</string>
+    <string name="permission_denied">Toestemming geweier</string>
+
+
+    <!-- Not localized / stays same -->
+    <string name="default_web_client_id">REPLACE_ME.apps.googleusercontent.com</string>
 </resources>

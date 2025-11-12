@@ -1,24 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">SmartPlanner</string>
+
+    <!-- Settings -->
     <string name="settings">Izilungiselelo</string>
     <string name="settings_saved">Izilungiselelo zigciniwe</string>
 
+    <!-- Login -->
     <string name="login">Ngena</string>
     <string name="register">Bhalisa</string>
     <string name="sign_in_with_google">Ngena nge-Google</string>
     <string name="email">I-imeyili</string>
     <string name="password">Iphasiwedi</string>
 
-    <string name="focus_mode">Imodi Yokugxila</string>
+    <!-- Bottom nav / menu labels -->
+    <string name="menu_home">Ikhaya</string>
+    <string name="menu_tasks">Imisebenzi</string>
+    <string name="menu_collab">Ukubambisana</string>
+    <string name="menu_profile">Iphrofayili</string>
+
+    <!-- Actions (overflow / app bar) -->
+    <string name="action_focus">Gxila</string>
+    <string name="action_insights">Ukuhlaziywa</string>
+    <string name="action_export_pdf">Khipha i-PDF</string>
+    <string name="action_export_ics">Khipha i-ICS</string>
+    <string name="action_load">Layisha isampula</string>
+    <string name="action_create">Dala isampula</string>
+    <string name="action_settings">Izilungiselelo</string>
+    <string name="action_logout">Phuma</string>
+
+    <!-- General UI -->
+    <string name="focus_mode">Imodi yokugxila</string>
     <string name="insights">Ukuhlaziywa</string>
-    <string name="export_pdf">Thumela i-PDF</string>
-    <string name="export_ics">Thumela i-ICS</string>
+    <string name="export_pdf">Khipha i-PDF</string>
+    <string name="export_ics">Khipha i-ICS</string>
     <string name="load_sample">Layisha isampula</string>
     <string name="create_sample">Dala isampula</string>
     <string name="logout">Phuma</string>
+    <string name="add">Engeza</string>
 
+    <!-- Weather -->
     <string name="chance_of_rain">Amathuba emvula</string>
 
+    <!-- Notifications -->
     <string name="notif_channel_name">Izikhumbuzi zemisebenzi</string>
     <string name="notif_channel_desc">Izaziso zemisebenzi eseduze nesikhathi</string>
+
+    <!-- Focus screen -->
+    <string name="focus_timer_default">25:00</string>
+    <string name="focus_start_25">Qala 25</string>
+    <string name="focus_break_5">Ikhefu 5</string>
+    <string name="focus_break_15">Ikhefu 15</string>
+    <string name="focus_stop">Misa</string>
+
+    <!-- Add Task dialog -->
+    <string name="new_task_for">Umsebenzi omusha ngo-%1$s</string>
+    <string name="hint_task_title">Isihloko somsebenzi</string>
+    <string name="hint_task_tag">Itegi</string>
+    <string name="cta_cancel">Khansela</string>
+    <string name="cta_add">Engeza</string>
+
+    <string name="notifications">Izaziso</string>
+    <string name="language">Ulimi</string>
+    <string name="send_test_notification">Thumela isaziso sokuhlola</string>
+    <string name="test_notif_body">Lena yisikhumbuzi somsebenzi sokuhlola.</string>
+    <string name="notifications_enabled">Izaziso zivuliwe</string>
+    <string name="permission_denied">Imvume inqatshiwe</string>
+
+
+    <!-- Not localized / stays same -->
+    <string name="default_web_client_id">REPLACE_ME.apps.googleusercontent.com</string>
 </resources>

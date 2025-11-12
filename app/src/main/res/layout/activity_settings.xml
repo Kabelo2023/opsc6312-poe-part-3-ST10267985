@@ -16,101 +16,44 @@
             android:layout_height="wrap_content"
             android:text="@string/settings"
             android:textStyle="bold"
-            android:textSize="22sp"
-            android:paddingBottom="8dp"/>
+            android:textSize="22sp" />
 
-        <!-- Profile -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Username">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etUsername"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/email"
-            android:layout_marginTop="8dp">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Timezone (e.g. Africa/Johannesburg)"
-            android:layout_marginTop="8dp">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etTimezone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <!-- Toggles -->
+        <!-- Notifications toggle -->
         <com.google.android.material.materialswitch.MaterialSwitch
             android:id="@+id/switchNotifications"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Notifications"
-            android:layout_marginTop="16dp"/>
-
-        <com.google.android.material.materialswitch.MaterialSwitch
-            android:id="@+id/switchTheme"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Dark theme"
-            android:layout_marginTop="8dp"/>
+            android:text="@string/notifications"
+            android:layout_marginTop="16dp" />
 
         <!-- Language -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Language"
-            android:layout_marginTop="16dp"/>
+            android:text="@string/language"
+            android:layout_marginTop="16dp" />
 
         <Spinner
             android:id="@+id/spinnerLanguage"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
-        <!-- Home lat/lon -->
-        <com.google.android.material.textfield.TextInputLayout
+        <!-- Test notification button (outlined) -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnTestNotif"
+            style="@style/Widget.Material3.Button.OutlinedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Home latitude"
-            android:layout_marginTop="16dp">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etHomeLat"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="numberDecimal"/>
-        </com.google.android.material.textfield.TextInputLayout>
+            android:text="@string/send_test_notification"
+            android:layout_marginTop="16dp" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Home longitude"
-            android:layout_marginTop="8dp">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etHomeLon"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="numberDecimal"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
+        <!-- Save button (filled = default M3 button style) -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSave"
             style="@style/Widget.Material3.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/settings_saved"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="12dp" />
     </LinearLayout>
 </ScrollView>

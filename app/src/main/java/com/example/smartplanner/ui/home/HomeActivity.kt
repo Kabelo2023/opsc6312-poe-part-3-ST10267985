@@ -40,8 +40,15 @@ import java.time.LocalDateTime
 import java.time.LocalTime
 import java.time.temporal.TemporalAdjusters
 import java.util.concurrent.TimeUnit
+import android.content.Context
+import com.example.smartplanner.i18n.LocaleManager
+
 
 class HomeActivity : AppCompatActivity() {
+
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(LocaleManager.wrap(newBase))
+    }
 
     private lateinit var binding: ActivityHomeBinding
     private lateinit var taskAdapter: TaskAdapter
@@ -277,8 +284,6 @@ class HomeActivity : AppCompatActivity() {
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home    -> true
-                R.id.nav_task    -> { toast("Task page (WIP)"); true }
-                R.id.nav_collab  -> { toast("Collaboration (WIP)"); true }
                 R.id.nav_profile -> { toast("Profile (WIP)"); true }
                 else -> false
             }
@@ -341,4 +346,5 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun toast(msg: String) = Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+
 }

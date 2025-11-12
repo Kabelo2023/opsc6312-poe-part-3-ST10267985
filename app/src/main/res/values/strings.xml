@@ -52,6 +52,22 @@
     <string name="focus_break_15">Break 15</string>
     <string name="focus_stop">Stop</string>
 
+    <!-- Add Task dialog -->
+    <string name="new_task_for">New Task for %1$s</string>
+    <string name="hint_task_title">Task title</string>
+    <string name="hint_task_tag">Tag</string>
+    <string name="cta_cancel">Cancel</string>
+    <string name="cta_add">Add</string>
+
+    <string name="notifications">Notifications</string>
+    <string name="language">Language</string>
+    <string name="send_test_notification">Send test notification</string>
+    <string name="test_notif_body">This is a test task reminder.</string>
+    <string name="notifications_enabled">Notifications enabled</string>
+    <string name="permission_denied">Permission denied</string>
+
+
+
     <string name="default_web_client_id">REPLACE_ME.apps.googleusercontent.com</string>
 
 </resources>

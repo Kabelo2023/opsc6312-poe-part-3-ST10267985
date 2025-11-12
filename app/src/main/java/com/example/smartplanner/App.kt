@@ -1,7 +1,11 @@
 package com.example.smartplanner
 
 import android.app.Application
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.util.Log
 import android.widget.Toast
 import com.google.firebase.FirebaseApp
@@ -12,6 +16,7 @@ import com.example.smartplanner.i18n.LocaleManager
 import com.example.smartplanner.weather.sync.WeatherSyncWorker
 
 class App : Application() {
+
     override fun onCreate() {
         super.onCreate()
 
@@ -23,14 +28,17 @@ class App : Application() {
             Log.e("App", "Firebase init failed", t)
         }
 
-        // Apply theme + language immediately
+        // Theme & locale
         ThemeManager.applyFromStorage(this)
         LocaleManager.applyFromStorage(this)
+
+        // Create notifications channel once
+        createNotificationChannel()
 
         // Background weather sync
         WeatherSyncWorker.schedule(this)
 
-        // Subscribe to a default FCM topic for easy testing
+        // Easy FCM testing
         runCatching { FirebaseMessaging.getInstance().subscribeToTopic("all") }
 
         Thread.setDefaultUncaughtExceptionHandler { _, e ->
@@ -39,6 +47,20 @@ class App : Application() {
             val i = Intent(this, LoginActivity::class.java)
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
             startActivity(i)
+        }
+    }
+
+    private fun createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(
+                "task_reminders",
+                getString(R.string.notif_channel_name),
+                NotificationManager.IMPORTANCE_DEFAULT
+            ).apply {
+                description = getString(R.string.notif_channel_desc)
+            }
+            (getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager)
+                .createNotificationChannel(channel)
         }
     }
 }
