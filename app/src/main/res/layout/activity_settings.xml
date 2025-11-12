@@ -1,139 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/settingsRoot"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#0D1117">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:orientation="vertical"
-        android:padding="24dp"
+        android:padding="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- Title -->
         <TextView
-            android:text="Settings"
-            android:textColor="@android:color/white"
-            android:textSize="22sp"
+            android:id="@+id/tvHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/settings"
             android:textStyle="bold"
-            android:layout_marginBottom="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:textSize="22sp"
+            android:paddingBottom="8dp"/>
 
-        <!-- Profile Section -->
-        <TextView
-            android:text="Profile"
-            android:textColor="@android:color/darker_gray"
-            android:textSize="14sp"
-            android:layout_marginBottom="8dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <EditText
-            android:id="@+id/etUsername"
-            android:hint="Username"
-            android:inputType="textPersonName"
+        <!-- Profile -->
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="12dp"
-            android:textColor="@android:color/white"
-            android:textColorHint="@android:color/darker_gray"
-            android:background="@drawable/bg_input_dark"
-            android:layout_marginBottom="12dp"/>
+            android:hint="Username">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/etEmail"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="12dp"
-            android:textColor="@android:color/white"
-            android:textColorHint="@android:color/darker_gray"
-            android:background="@drawable/bg_input_dark"
-            android:layout_marginBottom="20dp"/>
+            android:hint="@string/email"
+            android:layout_marginTop="8dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Preferences Section -->
-        <TextView
-            android:text="Preferences"
-            android:textColor="@android:color/darker_gray"
-            android:textSize="14sp"
-            android:layout_marginBottom="8dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <Switch
-            android:id="@+id/switchTheme"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:minHeight="48dp"
-            android:text="Dark Mode"
-            android:textColor="@android:color/white" />
+            android:hint="Timezone (e.g. Africa/Johannesburg)"
+            android:layout_marginTop="8dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etTimezone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <Switch
+        <!-- Toggles -->
+        <com.google.android.material.materialswitch.MaterialSwitch
             android:id="@+id/switchNotifications"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:minHeight="48dp"
-            android:text="Enable Notifications"
-            android:textColor="@android:color/white" />
+            android:text="Notifications"
+            android:layout_marginTop="16dp"/>
 
-        <!-- Timezone -->
-        <EditText
-            android:id="@+id/etTimezone"
-            android:hint="Timezone (e.g. Africa/Johannesburg)"
-            android:inputType="text"
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/switchTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="12dp"
-            android:textColor="@android:color/white"
-            android:textColorHint="@android:color/darker_gray"
-            android:background="@drawable/bg_input_dark"
-            android:layout_marginBottom="20dp"/>
+            android:text="Dark theme"
+            android:layout_marginTop="8dp"/>
 
-        <!-- Home Location (for weather) -->
+        <!-- Language -->
         <TextView
-            android:text="Home Location"
-            android:textColor="@android:color/darker_gray"
-            android:textSize="14sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"/>
+            android:text="Language"
+            android:layout_marginTop="16dp"/>
 
-        <EditText
-            android:id="@+id/etHomeLat"
-            android:hint="Latitude (e.g. -26.2041)"
-            android:inputType="numberDecimal|numberSigned"
+        <Spinner
+            android:id="@+id/spinnerLanguage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <!-- Home lat/lon -->
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="12dp"
-            android:textColor="@android:color/white"
-            android:textColorHint="@android:color/darker_gray"
-            android:background="@drawable/bg_input_dark"
-            android:layout_marginBottom="12dp"/>
+            android:hint="Home latitude"
+            android:layout_marginTop="16dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etHomeLat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/etHomeLon"
-            android:hint="Longitude (e.g. 28.0473)"
-            android:inputType="numberDecimal|numberSigned"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="12dp"
-            android:textColor="@android:color/white"
-            android:textColorHint="@android:color/darker_gray"
-            android:background="@drawable/bg_input_dark"
-            android:layout_marginBottom="20dp"/>
+            android:hint="Home longitude"
+            android:layout_marginTop="8dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etHomeLon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-
-        <!-- Save Button -->
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSave"
-            android:text="Save"
+            style="@style/Widget.Material3.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/teal_200"
-            android:textColor="@android:color/white"/>
+            android:text="@string/settings_saved"
+            android:layout_marginTop="20dp"/>
     </LinearLayout>
 </ScrollView>

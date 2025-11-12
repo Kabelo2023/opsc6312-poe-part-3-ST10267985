@@ -5,8 +5,10 @@ import android.content.Intent
 import android.util.Log
 import android.widget.Toast
 import com.google.firebase.FirebaseApp
+import com.google.firebase.messaging.FirebaseMessaging
 import com.example.smartplanner.ui.login.LoginActivity
-import com.example.smartplanner.ui.settings.ThemeManager   // ← add this import
+import com.example.smartplanner.ui.settings.ThemeManager
+import com.example.smartplanner.i18n.LocaleManager
 import com.example.smartplanner.weather.sync.WeatherSyncWorker
 
 class App : Application() {
@@ -21,11 +23,15 @@ class App : Application() {
             Log.e("App", "Firebase init failed", t)
         }
 
-        // ✅ Apply saved dark/light mode immediately for the whole app
+        // Apply theme + language immediately
         ThemeManager.applyFromStorage(this)
+        LocaleManager.applyFromStorage(this)
 
-        // ⬇️ schedule background weather sync (hourly, on network)
+        // Background weather sync
         WeatherSyncWorker.schedule(this)
+
+        // Subscribe to a default FCM topic for easy testing
+        runCatching { FirebaseMessaging.getInstance().subscribeToTopic("all") }
 
         Thread.setDefaultUncaughtExceptionHandler { _, e ->
             Log.e("FATAL", "Uncaught exception", e)

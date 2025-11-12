@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">SmartPlanner</string>
+    <string name="settings">Izilungiselelo</string>
+    <string name="settings_saved">Izilungiselelo zigciniwe</string>
+
+    <string name="login">Ngena</string>
+    <string name="register">Bhalisa</string>
+    <string name="sign_in_with_google">Ngena nge-Google</string>
+    <string name="email">I-imeyili</string>
+    <string name="password">Iphasiwedi</string>
+
+    <string name="focus_mode">Imodi Yokugxila</string>
+    <string name="insights">Ukuhlaziywa</string>
+    <string name="export_pdf">Thumela i-PDF</string>
+    <string name="export_ics">Thumela i-ICS</string>
+    <string name="load_sample">Layisha isampula</string>
+    <string name="create_sample">Dala isampula</string>
+    <string name="logout">Phuma</string>
+
+    <string name="chance_of_rain">Amathuba emvula</string>
+
+    <string name="notif_channel_name">Izikhumbuzi zemisebenzi</string>
+    <string name="notif_channel_desc">Izaziso zemisebenzi eseduze nesikhathi</string>
+</resources>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dark palette -->
+    <color name="sp_bg">#121212</color>
+    <color name="sp_surface">#1A1A1A</color>
+    <color name="sp_card">#1E1E1E</color>
+
+    <color name="sp_text">#FFFFFF</color>
+    <color name="sp_text_subtle">#B0B0B0</color>
+    <color name="gray_text">#B0B0B0</color>
+
+    <color name="sp_accent">#9FA8DA</color>
+    <color name="sp_border">#2C2C2C</color>
+    <color name="sp_warn">#FF6E40</color>
+
+    <color name="dark_card">#1E1E1E</color>
+    <color name="teal_200">#03DAC5</color>
+</resources>

@@ -2,10 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.smartplanner">
 
+    <!-- Network + notifications -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- Android 13+ notifications runtime permission -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
+        android:name=".App"
         android:label="SmartPlanner"
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -30,6 +34,15 @@
         <activity android:name=".ui.home.HomeActivity" android:exported="false" />
         <activity android:name=".focus.FocusActivity" android:exported="false" />
         <activity android:name=".insights.InsightsActivity" android:exported="false" />
+
+        <!-- FCM push receiver -->
+        <service
+            android:name=".push.PushService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
 
         <!-- Keep only if you share files externally -->
         <provider

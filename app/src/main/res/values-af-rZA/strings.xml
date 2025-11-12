@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">SmartPlanner</string>
+    <string name="settings">Instellings</string>
+    <string name="settings_saved">Instellings gestoor</string>
+
+    <string name="login">Meld aan</string>
+    <string name="register">Register</string>
+    <string name="sign_in_with_google">Meld aan met Google</string>
+    <string name="email">E-pos</string>
+    <string name="password">Wagwoord</string>
+
+    <string name="focus_mode">Fokusmodus</string>
+    <string name="insights">Insigte</string>
+    <string name="export_pdf">Voer PDF uit</string>
+    <string name="export_ics">Voer ICS uit</string>
+    <string name="load_sample">Laai voorbeeld</string>
+    <string name="create_sample">Skep voorbeeld</string>
+    <string name="logout">Teken uit</string>
+
+    <string name="chance_of_rain">Kans op reën</string>
+
+    <string name="notif_channel_name">Taakherinnerings</string>
+    <string name="notif_channel_desc">Kennisgewings vir take wat verskuldig is</string>
+</resources>

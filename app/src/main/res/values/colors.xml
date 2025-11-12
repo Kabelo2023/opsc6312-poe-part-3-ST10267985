@@ -1,25 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- App palette (dark) -->
-    <color name="sp_bg">#0F1115</color>
-    <color name="sp_surface">#151A20</color>
-    <color name="sp_card">#1B212A</color>
-    <color name="sp_border">#2B3340</color>
+    <!-- Light palette -->
+    <color name="sp_bg">#FFFFFF</color>
+    <color name="sp_surface">#FAFAFA</color>
+    <color name="sp_card">#FFFFFF</color>
 
-    <color name="sp_text">#E6FFFFFF</color>
-    <color name="sp_text_subtle">#99FFFFFF</color>
+    <color name="sp_text">#222222</color>
+    <color name="sp_text_subtle">#666666</color>
+    <color name="gray_text">#757575</color>     <!-- used by login layout -->
 
-    <color name="sp_accent">#3F8CFF</color>
-    <color name="sp_accent_dim">#2B6DD9</color>
-    <color name="sp_warn">#FFB020</color>
-    <color name="sp_ok">#35D07F</color>
+    <color name="sp_accent">#3F51B5</color>
+    <color name="sp_border">#E0E0E0</color>
+    <color name="sp_warn">#D32F2F</color>
 
-    <!-- Common aliases used by older layouts -->
-    <color name="white">#FFFFFFFF</color>
-    <color name="black">#FF000000</color>
-    <color name="teal_200">#FF03DAC5</color>
-
-    <!-- ✅ Aliases your layouts are asking for -->
-    <color name="dark_card">@color/sp_card</color>
-    <color name="gray_text">@color/sp_text_subtle</color>
+    <!-- Misc colors referenced by layouts -->
+    <color name="dark_card">#FFFFFF</color>     <!-- in light mode this can just be white -->
+    <color name="teal_200">#03DAC5</color>      <!-- Material default -->
 </resources>

@@ -1,37 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- App -->
     <string name="app_name">SmartPlanner</string>
-    <string name="add">Add</string>
 
-    <!-- Weather card -->
-    <string name="weather_summary">Partly cloudy</string>
-    <string name="weather_detail">23°C • H 26°  L 15° • 5% rain</string>
+    <!-- Settings -->
+    <string name="settings">Settings</string>
+    <string name="settings_saved">Settings saved</string>
 
-    <!-- Bottom nav (generic) -->
-    <string name="nav_home">Home</string>
-    <string name="nav_task">Tasks</string>
-    <string name="nav_collab">Collab</string>
-    <string name="nav_profile">Profile</string>
+    <!-- Login -->
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
 
-    <!-- ✅ Strings your bottom_nav_menu.xml expects -->
+    <!-- Menu labels / actions (used by menu XML) -->
     <string name="menu_home">Home</string>
     <string name="menu_tasks">Tasks</string>
     <string name="menu_collab">Collab</string>
     <string name="menu_profile">Profile</string>
 
-    <!-- Login/Register safe defaults -->
-    <string name="login">Log in</string>
-    <string name="register">Register</string>
-    <string name="email">Email</string>
-    <string name="password">Password</string>
     <string name="action_focus">Focus</string>
     <string name="action_insights">Insights</string>
-    <string name="action_export_pdf">Export as PDF</string>
-    <string name="action_export_ics">Export to Calendar (.ics)</string>
-    <string name="action_load">Load sample events</string>
-    <string name="action_create">Create sample event</string>
+    <string name="action_export_pdf">Export PDF</string>
+    <string name="action_export_ics">Export ICS</string>
+    <string name="action_load">Load sample</string>
+    <string name="action_create">Create sample</string>
     <string name="action_settings">Settings</string>
     <string name="action_logout">Logout</string>
+
+    <!-- General UI -->
+    <string name="focus_mode">Focus Mode</string>
+    <string name="insights">Insights</string>
+    <string name="export_pdf">Export PDF</string>
+    <string name="export_ics">Export ICS</string>
+    <string name="load_sample">Load sample</string>
+    <string name="create_sample">Create sample</string>
+    <string name="logout">Logout</string>
+    <string name="add">Add</string>
+
+    <!-- Weather -->
+    <string name="chance_of_rain">Chance of rain</string>
+
+    <!-- Notifications -->
+    <string name="notif_channel_name">Task reminders</string>
+    <string name="notif_channel_desc">Due task notifications</string>
+
+    <!-- Focus screen -->
+    <string name="focus_timer_default">25:00</string>
+    <string name="focus_start_25">Start 25</string>
+    <string name="focus_break_5">Break 5</string>
+    <string name="focus_break_15">Break 15</string>
+    <string name="focus_stop">Stop</string>
+
+    <string name="default_web_client_id">REPLACE_ME.apps.googleusercontent.com</string>
 
 </resources>

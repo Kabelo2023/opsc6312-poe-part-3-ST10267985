@@ -1,13 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.SyncUp" parent="Theme.Material3.Dark.NoActionBar">
-        <item name="colorSurface">@color/sp_surface</item>
-        <item name="colorOnSurface">@color/sp_text</item>
-        <item name="colorPrimary">@color/sp_accent</item>
-        <item name="colorPrimaryContainer">@color/sp_card</item>
-
-        <item name="android:statusBarColor">@color/sp_bg</item>
-        <item name="android:navigationBarColor">@color/sp_bg</item>
-        <item name="android:windowBackground">@color/sp_bg</item>
+    <!-- App theme for light & auto (Material3, no action bar) -->
+    <style name="Theme.SyncUp" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Keep it minimal to avoid missing colors; Material sets sensible defaults -->
+        <!-- If you later add custom colors, set them here (colorPrimary, etc.) -->
+        <item name="android:statusBarColor">?attr/colorSurface</item>
+        <item name="android:navigationBarColor">?attr/colorSurface</item>
     </style>
 </resources>

@@ -2,10 +2,7 @@ plugins {
     id("com.android.application")
     kotlin("android")
     id("com.google.gms.google-services")
-    // If Kotlin = 1.9.24 -> keep this
     id("com.google.devtools.ksp") version "1.9.24-1.0.20"
-    // If Kotlin = 2.0.x use:
-    // id("com.google.devtools.ksp") version "2.0.21-1.0.25"
 }
 
 android {
@@ -23,11 +20,14 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+        }
+        debug {
+            // keep fast logs
         }
     }
 
@@ -39,9 +39,7 @@ android {
     kotlinOptions { jvmTarget = "17" }
     kotlin { jvmToolchain(17) }
 
-    buildFeatures {
-        viewBinding = true
-    }
+    buildFeatures { viewBinding = true }
 }
 
 dependencies {
@@ -50,7 +48,6 @@ dependencies {
     implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.activity:activity-ktx:1.9.2")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    // NEW: CoordinatorLayout for your CoordinatorLayout/Toolbar XML
     implementation("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
 
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.6")
@@ -70,16 +67,20 @@ dependencies {
     // Firebase via BOM
     implementation(platform("com.google.firebase:firebase-bom:33.3.0"))
     implementation("com.google.firebase:firebase-auth-ktx")
-    implementation("com.google.firebase:firebase-firestore-ktx")
     implementation("com.google.firebase:firebase-analytics-ktx")
+    implementation("com.google.firebase:firebase-firestore-ktx")
+    implementation("com.google.firebase:firebase-messaging-ktx") // FCM
 
-    // Encrypted prefs (optional)
+    // Google Sign-In for SSO
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
+
+    // Security (encrypted prefs)
     implementation("androidx.security:security-crypto:1.1.0-alpha06")
 
     // WorkManager
     implementation("androidx.work:work-runtime-ktx:2.9.0")
 
-    // Room (with KSP)
+    // Room (with KSP) — already present; used for Weather + Tasks offline
     implementation("androidx.room:room-runtime:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")
     ksp("androidx.room:room-compiler:2.6.1")
