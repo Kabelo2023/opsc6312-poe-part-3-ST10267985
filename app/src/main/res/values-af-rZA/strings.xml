@@ -4,6 +4,7 @@
 
     <!-- Settings -->
     <string name="settings">Instellings</string>
+    <string name="dark_mode">Donker modus</string>
     <string name="settings_saved">Instellings gestoor</string>
 
     <!-- Login -->

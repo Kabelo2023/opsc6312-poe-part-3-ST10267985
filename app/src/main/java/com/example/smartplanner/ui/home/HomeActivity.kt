@@ -1,5 +1,6 @@
 package com.example.smartplanner.ui.home
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -9,6 +10,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
@@ -24,6 +26,7 @@ import com.example.smartplanner.feature.Notifier
 import com.example.smartplanner.feature.ReminderWorker
 import com.example.smartplanner.feature.occursOn
 import com.example.smartplanner.focus.FocusActivity
+import com.example.smartplanner.i18n.LocaleManager
 import com.example.smartplanner.insights.InsightsActivity
 import com.example.smartplanner.ui.login.LoginActivity
 import com.example.smartplanner.ui.settings.SettingsActivity
@@ -32,7 +35,11 @@ import com.example.smartplanner.viewmodel.SchedulerViewModel
 import com.example.smartplanner.viewmodel.TaskViewModel
 import com.example.smartplanner.weather.WeatherViewModel
 import com.example.smartplanner.weather.ui.WeatherCardBinder
+import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.textfield.MaterialAutoCompleteTextView
+import com.google.firebase.auth.FirebaseAuth
 import java.time.DayOfWeek
 import java.time.Duration
 import java.time.LocalDate
@@ -40,9 +47,6 @@ import java.time.LocalDateTime
 import java.time.LocalTime
 import java.time.temporal.TemporalAdjusters
 import java.util.concurrent.TimeUnit
-import android.content.Context
-import com.example.smartplanner.i18n.LocaleManager
-
 
 class HomeActivity : AppCompatActivity() {
 
@@ -62,6 +66,21 @@ class HomeActivity : AppCompatActivity() {
 
     private val allTasks = mutableListOf<Task>()
     private var selectedDate: LocalDate = safeToday()
+
+    // --- Streak/goal persistence ---
+    private val progressPrefs by lazy { getSharedPreferences("progress", MODE_PRIVATE) }
+
+    private var dailyGoal: Int
+        get() = progressPrefs.getInt("daily_goal", 3)
+        set(v) { progressPrefs.edit().putInt("daily_goal", v).apply() }
+
+    private var currentStreak: Int
+        get() = progressPrefs.getInt("streak", 0)
+        set(v) { progressPrefs.edit().putInt("streak", v).apply() }
+
+    private var lastCountedDate: String
+        get() = progressPrefs.getString("last_date", "") ?: ""
+        set(v) { progressPrefs.edit().putString("last_date", v).apply() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -92,7 +111,6 @@ class HomeActivity : AppCompatActivity() {
                     val mapped = list.map { Task(it.title, it.tag, it.done, safeToday()) }
                     allTasks.clear()
                     if (mapped.isEmpty()) {
-                        // seed so the screen never looks empty
                         createSampleTasks()
                     } else {
                         allTasks.addAll(mapped)
@@ -134,13 +152,20 @@ class HomeActivity : AppCompatActivity() {
 
             R.id.action_settings -> { startActivity(Intent(this, SettingsActivity::class.java)); true }
 
-            // Proper logout: back to login with a cleared back stack
+            // Proper logout: sign out + clear back stack + clear work/notifications
             R.id.action_logout -> {
-                val i = Intent(this, LoginActivity::class.java)
-                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                startActivity(i)
+                FirebaseAuth.getInstance().signOut()
+                runCatching {
+                    WorkManager.getInstance(this).cancelAllWorkByTag("reminder")
+                    NotificationManagerCompat.from(this).cancelAll()
+                }
+                val intent = Intent(this, LoginActivity::class.java).apply {
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                }
+                startActivity(intent)
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -193,6 +218,8 @@ class HomeActivity : AppCompatActivity() {
         taskAdapter.setItems(filtered)
         binding.tvMonth.text = monthLabel(date)
         TaskBus.tasks = filtered
+
+        updateStreakUI(date) // update streak chip
     }
 
     private fun setupFab() {
@@ -200,6 +227,18 @@ class HomeActivity : AppCompatActivity() {
             val dialogView = layoutInflater.inflate(R.layout.dialog_add_task, null)
             val etTitle = dialogView.findViewById<android.widget.EditText>(R.id.etTaskTitle)
             val etTag   = dialogView.findViewById<android.widget.EditText>(R.id.etTaskTag)
+            val spRepeat = dialogView.findViewById<MaterialAutoCompleteTextView>(R.id.spRepeat)
+            val chipDays = dialogView.findViewById<ChipGroup>(R.id.chipDays)
+
+            // Setup repeat dropdown once (before showing dialog)
+            val repeatChoices = listOf("None", "Daily", "Weekly", "Custom days")
+            spRepeat.setSimpleItems(repeatChoices.toTypedArray())
+
+            var repeatIndex = 0
+            spRepeat.setOnItemClickListener { _, _, pos, _ ->
+                repeatIndex = pos
+                chipDays.visibility = if (pos == 3) View.VISIBLE else View.GONE
+            }
 
             AlertDialog.Builder(this)
                 .setTitle("New Task for $selectedDate")
@@ -210,12 +249,43 @@ class HomeActivity : AppCompatActivity() {
                     if (title.isBlank()) {
                         toast("Title required")
                     } else {
-                        val newTask = Task(title, tag, false, selectedDate)
+                        val repeat = when (repeatIndex) {
+                            1 -> RepeatRule.DAILY
+                            2 -> RepeatRule.WEEKLY
+                            3 -> RepeatRule.CUSTOM
+                            else -> RepeatRule.NONE
+                        }
+
+                        val customDays: Set<DayOfWeek> =
+                            if (repeat == RepeatRule.CUSTOM) {
+                                val ids = listOf(
+                                    R.id.chipSun to DayOfWeek.SUNDAY,
+                                    R.id.chipMon to DayOfWeek.MONDAY,
+                                    R.id.chipTue to DayOfWeek.TUESDAY,
+                                    R.id.chipWed to DayOfWeek.WEDNESDAY,
+                                    R.id.chipThu to DayOfWeek.THURSDAY,
+                                    R.id.chipFri to DayOfWeek.FRIDAY,
+                                    R.id.chipSat to DayOfWeek.SATURDAY
+                                )
+                                ids.filter { dialogView.findViewById<Chip>(it.first).isChecked }
+                                    .map { it.second }
+                                    .toSet()
+                            } else emptySet()
+
+                        val newTask = Task(
+                            title = title,
+                            tag = tag,
+                            done = false,
+                            dueDate = selectedDate,
+                            repeat = repeat,
+                            customDays = customDays
+                        )
+
                         allTasks.add(newTask)
                         filterFor(selectedDate)
-                        taskVm.add(title, tag) { /* server handled elsewhere */ }
+                        taskVm.add(title, tag) { /* optional sync */ }
 
-                        // optional local reminder at 17:00
+                        // Optional local reminder at 17:00
                         val at = newTask.dueAtTime ?: LocalTime.of(17, 0)
                         val trigger = LocalDateTime.of(newTask.dueDate, at)
                         val delayMs = Duration.between(LocalDateTime.now(), trigger).toMillis()
@@ -225,7 +295,7 @@ class HomeActivity : AppCompatActivity() {
                         val req = OneTimeWorkRequestBuilder<ReminderWorker>()
                             .setInitialDelay(delayMs, TimeUnit.MILLISECONDS)
                             .setInputData(ReminderWorker.data(newTask.title, newTask.tag))
-                            .addTag("reminder_${newTask.id}")
+                            .addTag("reminder")
                             .build()
                         WorkManager.getInstance(this).enqueue(req)
                     }
@@ -291,11 +361,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun applyWindowInsets() {
-        // Do NOT pad the top app bar — that can hide action icons.
-        ViewCompat.setOnApplyWindowInsetsListener(binding.topAppBar) { _, insets ->
-            insets
-        }
-        // Keep bottom nav safe above gesture/nav bar.
+        ViewCompat.setOnApplyWindowInsetsListener(binding.topAppBar) { _, insets -> insets }
         ViewCompat.setOnApplyWindowInsetsListener(binding.bottomNavigation) { v, insets ->
             val sys = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(v.paddingLeft, v.paddingTop, v.paddingRight, sys.bottom)
@@ -329,7 +395,7 @@ class HomeActivity : AppCompatActivity() {
                     "Team Review – Calendar Flow",
                     "Fri · Low",
                     done = false,
-                    dueDate = today.with(DayOfWeek.FRIDAY)
+                    dueDate = today.with(java.time.DayOfWeek.FRIDAY)
                 )
             )
         )
@@ -347,4 +413,27 @@ class HomeActivity : AppCompatActivity() {
 
     private fun toast(msg: String) = Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
 
+    // --- Streak UI ---
+    private fun updateStreakUI(forDate: LocalDate) {
+        val completedToday = allTasks.count { occursOn(it, forDate) && it.done }
+        val hitGoal = completedToday >= dailyGoal
+
+        val todayKey = forDate.toString()
+        if (todayKey != lastCountedDate) {
+            currentStreak = if (hitGoal) currentStreak + 1 else 0
+            lastCountedDate = todayKey
+            maybeShowBadge(currentStreak)
+        }
+        binding.tvStreak?.text = "🔥 $currentStreak • Goal ${dailyGoal}/day"
+    }
+
+    private fun maybeShowBadge(streak: Int) {
+        if (streak in setOf(3, 7, 14, 30)) {
+            AlertDialog.Builder(this)
+                .setTitle("Badge unlocked!")
+                .setMessage("You hit a $streak-day streak. Keep going! 🔥")
+                .setPositiveButton("Nice", null)
+                .show()
+        }
+    }
 }

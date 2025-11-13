@@ -18,13 +18,26 @@
             android:textStyle="bold"
             android:textSize="22sp" />
 
+
+
         <!-- Notifications toggle -->
+        <!-- Notifications -->
         <com.google.android.material.materialswitch.MaterialSwitch
             android:id="@+id/switchNotifications"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/notifications"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="16dp"/>
+
+
+        <!-- Dark mode (now matches notifications) -->
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/switchTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/dark_mode"
+            android:layout_marginTop="12dp"/>
+
 
         <!-- Language -->
         <TextView

@@ -2,8 +2,9 @@
 <resources>
     <string name="app_name">SmartPlanner</string>
 
-    <!-- Settings -->
+    <!-- Settings / UI -->
     <string name="settings">Settings</string>
+    <string name="dark_mode">Dark mode</string>
     <string name="settings_saved">Settings saved</string>
 
     <!-- Login -->

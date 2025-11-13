@@ -5,5 +5,7 @@
         <!-- If you later add custom colors, set them here (colorPrimary, etc.) -->
         <item name="android:statusBarColor">?attr/colorSurface</item>
         <item name="android:navigationBarColor">?attr/colorSurface</item>
+
+
     </style>
 </resources>

@@ -1,31 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:padding="16dp"
-    android:layout_width="match_parent" android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/sp_bg">
 
-    <TextView
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:text="Task title" android:textColor="@color/sp_text" />
+    <!-- Title -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Task title"
+        app:boxStrokeColor="@color/sp_border"
+        app:hintTextColor="@color/sp_text_subtle">
 
-    <EditText
-        android:id="@+id/etTaskTitle"
-        android:layout_width="match_parent" android:layout_height="48dp"
-        android:backgroundTint="@color/sp_border"
-        android:textColor="@color/sp_text"
-        android:textColorHint="@color/sp_text_subtle"
-        android:hint="e.g., Draft project brief" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etTaskTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:textColor="@color/sp_text"
+            android:textColorHint="@color/sp_text_subtle" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
+    <!-- Tag -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="Tag" android:textColor="@color/sp_text" />
+        android:hint="Tag (e.g., High · Today)"
+        app:boxStrokeColor="@color/sp_border"
+        app:hintTextColor="@color/sp_text_subtle">
 
-    <EditText
-        android:id="@+id/etTaskTag"
-        android:layout_width="match_parent" android:layout_height="48dp"
-        android:backgroundTint="@color/sp_border"
-        android:textColor="@color/sp_text"
-        android:textColorHint="@color/sp_text_subtle"
-        android:hint="e.g., High · Today" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etTaskTag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:textColor="@color/sp_text"
+            android:textColorHint="@color/sp_text_subtle" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Repeat rule -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:hint="Repeat"
+        app:boxStrokeColor="@color/sp_border"
+        app:hintTextColor="@color/sp_text_subtle"
+        app:endIconMode="dropdown_menu">
+
+        <com.google.android.material.textfield.MaterialAutoCompleteTextView
+            android:id="@+id/spRepeat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="Choose repeat rule"
+            android:importantForAccessibility="yes"
+            android:inputType="none"
+            android:minHeight="48dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Visible only when 'Custom days' is chosen -->
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chipDays"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_marginTop="8dp"
+        app:singleLine="false"
+        app:singleSelection="false"
+        app:selectionRequired="false"
+        app:chipSpacingHorizontal="8dp"
+        app:chipSpacingVertical="8dp">
+
+        <!-- Using Material3 Filter chips (already checkable). No app:checkable needed. -->
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipSun"
+            style="@style/Widget.Material3.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sun" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipMon"
+            style="@style/Widget.Material3.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mon" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipTue"
+            style="@style/Widget.Material3.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tue" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipWed"
+            style="@style/Widget.Material3.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wed" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipThu"
+            style="@style/Widget.Material3.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thu" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipFri"
+            style="@style/Widget.Material3.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fri" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipSat"
+            style="@style/Widget.Material3.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sat" />
+    </com.google.android.material.chip.ChipGroup>
+
+
 </LinearLayout>

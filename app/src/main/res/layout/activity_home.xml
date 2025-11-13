@@ -9,7 +9,7 @@
     android:fitsSystemWindows="true"
     tools:context=".ui.home.HomeActivity">
 
-    <!-- App bar / toolbar (consumes status-bar inset) -->
+    <!-- App bar / toolbar -->
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"
         android:layout_width="match_parent"
@@ -29,7 +29,7 @@
             app:contentInsetStartWithNavigation="0dp"/>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <!-- Content is tied to AppBar so it can't overlap or intercept taps -->
+    <!-- Main content -->
     <androidx.core.widget.NestedScrollView
         android:id="@+id/contentScroll"
         android:layout_width="match_parent"
@@ -49,12 +49,23 @@
                 android:id="@+id/tvMonth"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
+                android:layout_marginBottom="4dp"
                 android:text=""
                 tools:text="November 2025"
                 android:textColor="@color/sp_text"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
+
+            <!-- NEW: streak/goal chip -->
+            <TextView
+                android:id="@+id/tvStreak"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🔥 0 • Goal 3/day"
+                android:textColor="@android:color/darker_gray"
+                android:paddingTop="4dp"
+                android:layout_marginBottom="8dp"
+                android:textSize="12sp"/>
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"

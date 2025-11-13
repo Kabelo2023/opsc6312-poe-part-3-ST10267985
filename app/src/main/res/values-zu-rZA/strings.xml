@@ -4,6 +4,7 @@
 
     <!-- Settings -->
     <string name="settings">Izilungiselelo</string>
+    <string name="dark_mode">Imodi emnyama</string>
     <string name="settings_saved">Izilungiselelo zigciniwe</string>
 
     <!-- Login -->
