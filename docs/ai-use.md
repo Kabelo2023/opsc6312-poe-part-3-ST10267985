@@ -23,4 +23,4 @@ Drafted concise commit messages, PR descriptions, and a short in-app explanation
 Verification and originality.
 All AI-generated code was reviewed, compiled, and tested in the Android emulator; I adapted snippets to fit my project structure and naming. Where the AI suggested third-party concepts, I verified APIs against official Android documentation. No large external code blocks were copied verbatim beyond short boilerplate necessary for Android components.
 
-No AI-generated images were used; app screenshots are my own emulator captures.
+No AI-generated images were used.
